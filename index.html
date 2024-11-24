@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <div id="title">
+            <h1>Encutador de URL</h1>
+        </div>
+        <div>
+            <div id="formBox">
+                <input type="text" id="urlInput" placeholder="Insira o link para ser encurtado">
+                <!-- <select name="time" id="time">
+                    <option value="1">1 dia</option>
+                    <option value="2">2 dias</option>
+                    <option value="5">5 dias</option>
+                    <option value="10">10 dias</option>
+                </select> -->
+                <div id="timeBox">
+                    <p>Tempo de duração:</p>
+                    <div id="time">
+                        <span class="spanTime" id="one">1 dia</span>
+                        <span class="spanTime" id="two">2 dias</span>
+                        <span class="spanTime" id="five">5 dias</span>
+                        <span class="spanTime" id="ten">10 dias</span>
+                    </div>
+                </div>  
+                <div id="checkbox">
+                    <input type="checkbox" id="namedUrl" name="namedUrl" checked />
+                    <label for="url">Nomear e salvar esta url encurtada;</label>
+                </div>
+                <button class="button">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <div class="front">
+                      <span>Encurtar URL</span>
+                    </div>
+                  </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
