@@ -31,7 +31,7 @@ body{
   background-color: white;
   position: absolute;
   right: -25vw;
-  
+  overflow: auto;
   border-radius: 20px 0px 0px 20px;  
   /* animation-duration: 1s;
   animation-name: showSidebar; */
@@ -43,6 +43,7 @@ body{
   left: 10px;
   top: 10px;
   cursor: pointer;
+  color:  rgb(58, 86, 128);
 }
 
 #box {
@@ -242,7 +243,6 @@ input, select {
 
 @keyframes hideSidebar {
   from {
-    
     right: 0;
   }
 
