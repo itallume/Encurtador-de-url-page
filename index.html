@@ -8,39 +8,54 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ecf01fc18f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
     <title>Document</title>
 </head>
 <body>
-    <div id="box">
-        <div id="title">
-            <h1>Encurtador de URL  <i class="fa-solid fa-link"></i></h1>
-        </div>
-        <div>
-            <div id="formBox">
-                <input type="text" id="urlInput" placeholder="Insira o link para ser encurtado">
-                <div id="timeBox">
-                    <p>Tempo de duração:</p>
-                    <div id="time">
-                        <span class="spanTime selected" id="one" onclick="changeDuration('1')">1 dia</span>
-                        <span class="spanTime unselected" id="two" onclick="changeDuration('2')">2 dias</span>
-                        <span class="spanTime unselected" id="five" onclick="changeDuration('5')">5 dias</span>
-                        <span class="spanTime unselected" id="ten" onclick="changeDuration('10')">10 dias</span>
+    <span class="material-symbols-outlined" id="menuIcon">
+        menu
+    </span>
+
+    <section id="sidebarURLS">
+
+    </section>
+    <section id="formSection">
+        <div id="box">
+            <div id="title">
+                <h1>Encurtador de URL  <i class="fa-solid fa-link"></i></h1>
+            </div>
+            <div>
+                <div id="formBox">
+                    <input type="text" id="urlInput" placeholder="Insira o link para ser encurtado">
+                    <div id="timeBox">
+                        <p>Tempo de duração:</p>
+                        <div id="time">
+                            <span class="spanTime selected" id="one" onclick="changeDuration('1')">1 dia</span>
+                            <span class="spanTime unselected" id="two" onclick="changeDuration('2')">2 dias</span>
+                            <span class="spanTime unselected" id="five" onclick="changeDuration('5')">5 dias</span>
+                            <span class="spanTime unselected" id="ten" onclick="changeDuration('10')">10 dias</span>
+                        </div>
+                    </div>  
+                    <div id="checkbox">
+                        <input type="checkbox" id="namedUrl" name="namedUrl"/>
+                        <label for="url">Nomear e salvar esta url encurtada</label>
                     </div>
-                </div>  
-                <div id="checkbox">
-                    <input type="checkbox" id="namedUrl" name="namedUrl"/>
-                    <label for="url">Nomear e salvar esta url encurtada</label>
+                    <div id="inputName"> 
+                        <input type="text" id="nameInput" placeholder="Digite um nome para sua URL">
+                    </div>
+                    <button class="button" onclick="generateShortenerUrl()">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <div class="front">
+                          <span>Encurtar URL</span>
+                        </div>
+                      </button>
                 </div>
-                <button class="button" onclick="generateShortenerUrl()">
-                    <span class="shadow"></span>
-                    <span class="edge"></span>
-                    <div class="front">
-                      <span>Encurtar URL</span>
-                    </div>
-                  </button>
             </div>
         </div>
-    </div>
+
+    </section>
+    
     <script src="script.js"></script>
 </body>
 </html>

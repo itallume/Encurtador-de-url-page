@@ -1,4 +1,11 @@
 const urlInputElement = document.getElementById("urlInput");
+const sidebar = document.getElementById("sidebarURLS");
+const menuIcon = document.getElementById("menuIcon")
+
+menuIcon.addEventListener("click", event => {
+    sidebar.style.animation = "showSidebar 0.5s ease-out 0s 1 normal forwards running"; 
+})
+
 let activeDuration = "1";
 const durationElements = {
     "1": document.getElementById("one"),
@@ -16,6 +23,15 @@ function changeDuration(duration) {
     durationElements[duration].classList.remove("unselected");
     durationElements[duration].classList.add("selected");
 }
+const nameInputElement = document.getElementById("nameInput")
+const checkbox = document.getElementById("namedUrl");
+checkbox.addEventListener("click", event => {
+    if(checkbox.checked == true){
+        nameInputElement.style.display = "block";
+        return
+    }
+    nameInputElement.style.display = "none";
+})
 
 async function generateShortenerUrl() {
     const originalURL = urlInputElement.value;
@@ -37,4 +53,13 @@ const getCodeUrl = async (urlData) => {
     }
     return await fetch('https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/create', options)
     .then(r => r.json());
+}
+
+function salvarUrlEncurtada(name, originalURL, shortenedURL){
+    const urlOBJ = {
+        name: name,
+        originalUrl: originalURL,
+        shortenedURL: shortenedURL
+    };
+    localStorage.setItem(JSON.stringify(urlOBJ));
 }

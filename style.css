@@ -4,13 +4,38 @@
 } 
 
 body{
+  background-color: rgb(58, 86, 128); 
+  font-family: "Oswald", sans-serif;
+  overflow: hidden;
+}
 
+#menuIcon {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: 2rem;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+#formSection{
     height: 100vh;
     color: aliceblue;
-    background-color: rgb(58, 86, 128); 
     display: grid;
     place-items: center;
-    font-family: "Oswald", sans-serif;
+}
+
+#sidebarURLS{
+  width: 25vw;
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  right: -25vw;
+  
+  border-radius: 20px 0px 0px 20px;  
+  /* animation-duration: 1s;
+  animation-name: showSidebar; */
+
 }
 
 #box {
@@ -93,8 +118,22 @@ p{
 #time {
     display: flex;
     align-items: center;
+    width: 100%;
     
 }
+
+#inputName{
+  width: 100%;
+}
+
+#nameInput{
+  height: 30px;
+  width: 300px;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  display: none;
+}
+
 .button {
     margin-top: 25px;
     position: relative;
@@ -183,4 +222,14 @@ input, select {
 }
 .unselected {
   background-color: #0b407a;
+}
+
+@keyframes showSidebar {
+  from {
+    right: -500px;
+  }
+
+  to {
+    right: 0;
+  }
 }
