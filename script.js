@@ -1,9 +1,14 @@
 const urlInputElement = document.getElementById("urlInput");
 const sidebar = document.getElementById("sidebarURLS");
-const menuIcon = document.getElementById("menuIcon")
+const menuIcon = document.getElementById("menuIcon");
+const arrowHide = document.getElementById("arrowHide");
 
 menuIcon.addEventListener("click", event => {
     sidebar.style.animation = "showSidebar 0.5s ease-out 0s 1 normal forwards running"; 
+})
+
+arrowHide.addEventListener("click", event => {
+    sidebar.style.animation = "hideSidebar 0.5s ease-in 0s 1 normal forwards running"
 })
 
 let activeDuration = "1";
@@ -63,3 +68,4 @@ function salvarUrlEncurtada(name, originalURL, shortenedURL){
     };
     localStorage.setItem(JSON.stringify(urlOBJ));
 }
+

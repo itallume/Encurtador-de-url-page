@@ -38,6 +38,13 @@ body{
 
 }
 
+#arrowHide {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
 #box {
   padding: 50px;
   border: 1px solid rgb(255, 255, 255);
@@ -226,10 +233,21 @@ input, select {
 
 @keyframes showSidebar {
   from {
-    right: -500px;
+    right: -25vw;
   }
-
   to {
     right: 0;
   }
+}
+
+@keyframes hideSidebar {
+  from {
+    
+    right: 0;
+  }
+
+  to {
+    right: -25vw;
+  }
+  
 }
