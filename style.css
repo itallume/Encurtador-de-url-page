@@ -44,6 +44,30 @@ body{
   top: 10px;
   cursor: pointer;
   color:  rgb(58, 86, 128);
+  font-size: 2rem;
+}
+
+#titleUrl {
+  color: #254972;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.containerURL a {
+  word-wrap: break-word; 
+  overflow-wrap: anywhere;
+  color: #254972;
+}
+
+.containerURL{
+  margin-bottom: 15px;
+  width: 90%;
+}
+
+.containerURL li{
+  margin-bottom: 5px;
 }
 
 #box {
