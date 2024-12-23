@@ -91,14 +91,39 @@ const getCodeUrl = async (urlData) => {
     .then(r => r.json());
 }
 
+function showFeedbackMessage() {
+    const feedback = document.getElementById('feedback');
+    feedback.classList.add('show');
+
+    setTimeout(() => {
+        feedback.classList.remove('show');
+    }, 1000);
+}
+
+function moveToClipboard(url){
+    navigator.clipboard.writeText(url)
+    .then(() => {
+        showFeedbackMessage(); 
+    })
+    .catch(err => {
+        console.error('Erro ao copiar a URL: ', err);
+    });
+}
+
 function informationComponent(name, originalUrl, shortenedUrl){
-    return `<div style="margin-left: 20px; " class="containerURL">
-    <h2>${name}</h2>
-    <ul>
-        <li>URL original: <a href="${originalUrl}" target="_blank">${originalUrl}</a></li>
-        <li>URL encurtada: <a href="${shortenedUrl}" target="_blank">${shortenedUrl}</a></li>
-    </ul>
-    </div>`
+    return `<div style="margin-left: 20px;" class="containerURL">
+        <h2>${name}</h2>
+        <ul>
+            <li>URL original: 
+                <a href="${originalUrl}" target="_blank">${originalUrl}</a> 
+                <img onclick="moveToClipboard('${originalUrl}')" src="./content_copy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="copy"/>
+            </li>
+            <li>URL encurtada: 
+                <a href="${shortenedUrl}" target="_blank">${shortenedUrl}</a> 
+                <img onclick="moveToClipboard('${shortenedUrl}')" src="./content_copy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="copy"/>
+            </li>
+        </ul>
+    </div>`;
 }
 
 
