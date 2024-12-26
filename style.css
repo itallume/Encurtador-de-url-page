@@ -91,8 +91,16 @@ ul {
   overflow-wrap: anywhere;
 }
 
+.containerURL h2 span{
+  word-wrap: break-word; 
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+  color: #192746;
+  
+}
+
 .containerURL{
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   width: 90%;
 }
 

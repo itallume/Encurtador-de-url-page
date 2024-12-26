@@ -4,7 +4,6 @@ const menuIcon = document.getElementById("menuIcon");
 const arrowHide = document.getElementById("arrowHide");
 const urlsList = document.getElementById("urlList");
 
-
 menuIcon.addEventListener("click", event => {
     sidebar.style.animation = "showSidebar 0.3s ease-out 0s 1 normal forwards running"; 
     urlsList.replaceChildren();
@@ -16,9 +15,8 @@ function updateUrlList(){
         for(i = 0; i < localStorage.length; i++){
             const key = localStorage.key(i);
             const item = JSON.parse(localStorage.getItem(key));
-            urlsList.innerHTML += informationComponent(key, item["originalURL"], item["shortenedURL"])
-        }
-    }
+            urlsList.innerHTML += informationComponent(item)
+    }}
 }
 
 arrowHide.addEventListener("click", event => {
@@ -77,7 +75,8 @@ async function generateShortenerUrl() {
             const obj = {
                 "name": nameInputElement.value,
                 "originalURL": originalURL,
-                "shortenedURL": `https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`
+                "shortenedURL": `https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`,
+                "expirationTime": expirationTimeInSeconds
             }
             localStorage.setItem(nameInputElement.value, JSON.stringify(obj));
         }
@@ -130,9 +129,25 @@ function closeModal() {
     modal.classList.remove('show');
 }
 
-function informationComponent(name, originalUrl, shortenedUrl){
+function informationComponent(item){
+    const name = item["name"];
+    const originalUrl = item["originalURL"];
+    const shortenedUrl = item["shortenedURL"];
+    const futureTimeInSeconds = Number(item["expirationTime"]);
+    let finalStringTime = "";
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+    const difference = futureTimeInSeconds - currentTimeInSeconds;
+
+    if (difference <= 0) {
+        finalStringTime = "<span>Expirado</span>";
+    } else {
+        const days = Math.floor(difference / 86400); 
+        const hours = Math.floor((difference % 86400) / 3600);
+        const minutes = Math.floor((difference % 3600) / 60);
+        finalStringTime = `<span>Expira em: ${days} ${days > 1 ? "dias" : "dia"}, ${hours} ${hours > 1 ? "horas" : "hora"} e ${minutes} ${minutes > 1 ? "minutos" : "minuto"}</span>`
+    }
     return `<div style="margin-left: 20px;" class="containerURL">
-        <h2>${name}</h2>
+        <h2>${name}  ${finalStringTime}</h2>
         <ul>
             <li>URL original: 
                 <a href="${originalUrl}" target="_blank">${originalUrl}</a> 
