@@ -55,6 +55,10 @@ checkbox.addEventListener("click", event => {
 
 async function generateShortenerUrl() {
     const originalURL = urlInputElement.value;
+    if (originalURL == ""){
+        alert("Insira uma url válida");
+        return;
+    }
     const date = new Date();
     date.setDate(date.getDate() + Number(activeDuration));
     const expirationTimeInSeconds = Math.floor(date.getTime() / 1000).toString();
@@ -64,10 +68,11 @@ async function generateShortenerUrl() {
     }
     getCodeUrl(urlData)
     .then(response => {
-        alert(`A sua URL encurtada: https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`);
+        showModal(`https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`);
         if(checkbox.checked == true){
             if(nameInputElement == ""){
-                alert("de um nome a sua url")
+                alert("Dê um nome a sua url")
+                return;
             }
             const obj = {
                 "name": nameInputElement.value,
@@ -79,7 +84,10 @@ async function generateShortenerUrl() {
         urlInputElement.value = "";
         nameInputElement.value = "";
 
-    });
+    })
+    .catch((e) => {
+        alert("Não foi possível encurtar sua URL, tente mais tarde")
+    }) 
 }
 
 const getCodeUrl = async (urlData) => {
@@ -108,6 +116,18 @@ function moveToClipboard(url){
     .catch(err => {
         console.error('Erro ao copiar a URL: ', err);
     });
+}
+
+function showModal(shortenedUrl) {
+    const modal = document.getElementById('modal');
+    const linkElement = document.getElementById('shortenedLink');
+    linkElement.innerHTML = `<a href="${shortenedUrl}" target="_blank">${shortenedUrl}</a> <img onclick="moveToClipboard('${shortenedUrl}')" src="./content_copy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="copy"/>`;
+    modal.classList.add('show');
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('show');
 }
 
 function informationComponent(name, originalUrl, shortenedUrl){
