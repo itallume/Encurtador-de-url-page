@@ -12,10 +12,10 @@ menuIcon.addEventListener("click", event => {
 
 function updateUrlList(){
     if(localStorage.length > 0){
-        for(i = 0; i < localStorage.length; i++){
+        for(i = localStorage.length - 1; i > -1; i--){
             const key = localStorage.key(i);
             const item = JSON.parse(localStorage.getItem(key));
-            urlsList.innerHTML += informationComponent(item)
+            urlsList.innerHTML += informationComponent(item);
     }}
 }
 
@@ -79,6 +79,7 @@ async function generateShortenerUrl() {
                 "expirationTime": expirationTimeInSeconds
             }
             localStorage.setItem(nameInputElement.value, JSON.stringify(obj));
+            urlsList.innerHTML += informationComponent(obj);
         }
         urlInputElement.value = "";
         nameInputElement.value = "";
@@ -144,7 +145,7 @@ function informationComponent(item){
         const days = Math.floor(difference / 86400); 
         const hours = Math.floor((difference % 86400) / 3600);
         const minutes = Math.floor((difference % 3600) / 60);
-        finalStringTime = `<span>Expira em: ${days} ${days > 1 ? "dias" : "dia"}, ${hours} ${hours > 1 ? "horas" : "hora"} e ${minutes} ${minutes > 1 ? "minutos" : "minuto"}</span>`
+        finalStringTime = `<span>Expira em: ${days} ${days != 1 ? "dias" : "dia"}, ${hours} ${hours != 1 ? "horas" : "hora"} e ${minutes} ${minutes != 1 ? "minutos" : "minuto"}</span>`
     }
     return `<div style="margin-left: 20px;" class="containerURL">
         <h2>${name}  ${finalStringTime}</h2>
