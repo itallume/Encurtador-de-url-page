@@ -68,8 +68,12 @@ async function generateShortenerUrl() {
     .then(response => {
         showModal(`https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`);
         if(checkbox.checked == true){
-            if(nameInputElement == ""){
-                alert("Dê um nome a sua url")
+            if(nameInputElement.value == ""){
+                alert("Dê um nome a sua url");
+                return;
+            }
+            if(localStorage.getItem(nameInputElement.value)){
+                alert("Uma url salva já tem esse nome, escolha outro");
                 return;
             }
             const obj = {
@@ -118,6 +122,12 @@ function moveToClipboard(url){
     });
 }
 
+function removeUrlFromLocalstorage(key){
+    localStorage.removeItem(key);
+    urlsList.replaceChildren();
+    updateUrlList();
+}
+
 function showModal(shortenedUrl) {
     const modal = document.getElementById('modal');
     const linkElement = document.getElementById('shortenedLink');
@@ -148,15 +158,25 @@ function informationComponent(item){
         finalStringTime = `<span>Expira em: ${days} ${days != 1 ? "dias" : "dia"}, ${hours} ${hours != 1 ? "horas" : "hora"} e ${minutes} ${minutes != 1 ? "minutos" : "minuto"}</span>`
     }
     return `<div style="margin-left: 20px;" class="containerURL">
-        <h2>${name}  ${finalStringTime}</h2>
+        <h2 class="centerIconText">${name} <img onclick="removeUrlFromLocalstorage('${name}')" src="./deleteImg.svg" alt="delete"/> </h2>
         <ul>
-            <li>URL original: 
-                <a href="${originalUrl}" target="_blank">${originalUrl}</a> 
-                <img onclick="moveToClipboard('${originalUrl}')" src="./content_copy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="copy"/>
+            <li> 
+                ${finalStringTime} 
             </li>
-            <li>URL encurtada: 
-                <a href="${shortenedUrl}" target="_blank">${shortenedUrl}</a> 
-                <img onclick="moveToClipboard('${shortenedUrl}')" src="./content_copy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="copy"/>
+            <li class="informationstructure"> 
+                
+                    <p>URL original:</p>
+                    <div>
+                        <a href="${originalUrl}" target="_blank">${originalUrl}</a> 
+                        <img onclick="moveToClipboard('${originalUrl}')" src="./content_copy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="copy"/>
+                    </div>
+            </li>
+            <li class="informationstructure">
+                <p>URL encurtada:</p>
+                <div>
+                    <a href="${shortenedUrl}" target="_blank">${shortenedUrl}</a> 
+                    <img onclick="moveToClipboard('${shortenedUrl}')" src="./content_copy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="copy"/>
+                </div>
             </li>
         </ul>
     </div>`;

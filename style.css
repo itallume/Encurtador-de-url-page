@@ -11,6 +11,8 @@ body{
 
 img {
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 #menuIcon {
@@ -62,9 +64,17 @@ img {
   right: -25vw;
   overflow: auto;
   border-radius: 20px 0px 0px 20px;  
+  text-overflow: ellipsis;
   /* animation-duration: 1s;
   animation-name: showSidebar; */
 
+}
+
+.informationstructure{
+  display: flex;
+}
+
+.centerIconText{
 }
 
 #arrowHide {
@@ -85,9 +95,23 @@ ul {
 }
 
 .containerURL a {
-  word-wrap: break-word; 
-  overflow-wrap: anywhere;
   color: #254972;
+  word-wrap: break-word;
+  width: 90%;
+}
+
+.containerURL p {
+  font-size: 1rem;
+  text-wrap: nowrap;
+  margin-right: 10px;
+}
+
+.containerURL div{
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
 }
 
 .containerURL h2{
@@ -95,12 +119,14 @@ ul {
   overflow-wrap: anywhere;
 }
 
-.containerURL h2 span{
+.containerURL h2 img {
+  align-items: center;
+}
+
+ul li span{
   word-wrap: break-word; 
   overflow-wrap: anywhere;
-  font-size: 1rem;
   color: #192746;
-  
 }
 
 .containerURL{
@@ -110,6 +136,8 @@ ul {
 
 .containerURL li{
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
 }
 
 #box {
@@ -144,7 +172,7 @@ h1 {
 }
 
 p{
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 #checkbox {
