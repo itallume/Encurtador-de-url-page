@@ -5,9 +5,17 @@ const arrowHide = document.getElementById("arrowHide");
 const urlsList = document.getElementById("urlList");
 
 menuIcon.addEventListener("click", event => {
-    sidebar.style.animation = "showSidebar 0.3s ease-out 0s 1 normal forwards running"; 
-    urlsList.replaceChildren();
-    updateUrlList();
+    if ( window.innerWidth < 1025){
+        sidebar.style.display = 'block';
+        sidebar.style.animation = "showSidebarSmall 0.3s ease-out 0s 1 normal forwards running";
+    }else{
+        sidebar.style.animation = "showSidebar 0.3s ease-out 0s 1 normal forwards running";
+    }
+    sidebar.addEventListener("animationend", function handler() {
+        urlsList.replaceChildren();
+        updateUrlList();
+        sidebar.removeEventListener("animationend", handler);
+    });
 })
 
 function updateUrlList(){
@@ -20,7 +28,15 @@ function updateUrlList(){
 }
 
 arrowHide.addEventListener("click", event => {
-    sidebar.style.animation = "hideSidebar 0.3s ease-in 0s 1 normal forwards running"
+    if ( window.innerWidth < 1025){
+        sidebar.style.animation = "hideSidebarSmall 0.3s ease-in 0s 1 normal forwards running";
+        sidebar.addEventListener("animationend", function handler() {
+            sidebar.style.display = 'none'; 
+            sidebar.removeEventListener("animationend", handler);
+        });
+        return;
+    }
+    sidebar.style.animation = "hideSidebar 0.3s ease-in 0s 1 normal forwards running";
 })
 
 let activeDuration = "1";
@@ -46,7 +62,7 @@ const checkbox = document.getElementById("namedUrl");
 checkbox.addEventListener("click", event => {
     if(checkbox.checked == true){
         nameInputElement.style.display = "block";
-        return
+        return;
     }
     nameInputElement.style.display = "none";
 })
@@ -64,27 +80,28 @@ async function generateShortenerUrl() {
         "originalUrl": originalURL,
         "expirationTime": expirationTimeInSeconds
     }
+    if(checkbox.checked == true){
+        if(nameInputElement.value == ""){
+            alert("Dê um nome a sua url");
+            return;
+        }
+        if(localStorage.getItem(nameInputElement.value)){
+            alert("Uma url salva já tem esse nome, escolha outro");
+            return;
+        }
+    }
     getCodeUrl(urlData)
     .then(response => {
         showModal(`https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`);
-        if(checkbox.checked == true){
-            if(nameInputElement.value == ""){
-                alert("Dê um nome a sua url");
-                return;
-            }
-            if(localStorage.getItem(nameInputElement.value)){
-                alert("Uma url salva já tem esse nome, escolha outro");
-                return;
-            }
-            const obj = {
-                "name": nameInputElement.value,
-                "originalURL": originalURL,
-                "shortenedURL": `https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`,
-                "expirationTime": expirationTimeInSeconds
-            }
-            localStorage.setItem(nameInputElement.value, JSON.stringify(obj));
-            urlsList.innerHTML += informationComponent(obj);
+        const obj = {
+            "name": nameInputElement.value,
+            "originalURL": originalURL,
+            "shortenedURL": `https://sjx4g5l0ag.execute-api.us-east-2.amazonaws.com/${response["code"]}`,
+            "expirationTime": expirationTimeInSeconds
         }
+        localStorage.setItem(nameInputElement.value, JSON.stringify(obj));
+        urlsList.innerHTML += informationComponent(obj);
+        
         urlInputElement.value = "";
         nameInputElement.value = "";
 

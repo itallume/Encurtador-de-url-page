@@ -25,119 +25,10 @@ img {
 }
 
 #formSection{
-    height: 100vh;
-    color: aliceblue;
-    display: grid;
-    place-items: center;
-}
-
-.feedback-message {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  background-color: #192746; 
-  color: white;
-  padding: 20px 40px;
-  border-radius: 10px;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-  font-family: Arial, sans-serif;
-  font-size: 1.5em;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none; 
-  z-index: 1001;
-  text-align: center;
-}
-
-.feedback-message.show {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-#sidebarURLS{
-  width: 25vw;
   height: 100vh;
-  background-color: white;
-  position: absolute;
-  right: -25vw;
-  overflow: auto;
-  border-radius: 20px 0px 0px 20px;  
-  text-overflow: ellipsis;
-  /* animation-duration: 1s;
-  animation-name: showSidebar; */
-
-}
-
-.informationstructure{
-  display: flex;
-}
-
-.centerIconText{
-}
-
-#arrowHide {
-  position: relative;
-  left: 10px;
-  top: 10px;
-  cursor: pointer;
-  color:  rgb(58, 86, 128);
-  font-size: 2rem;
-}
-
-#titleUrl {
-  color: #254972;
-}
-
-ul {
-  list-style-type: none;
-}
-
-.containerURL a {
-  color: #254972;
-  word-wrap: break-word;
-  width: 90%;
-}
-
-.containerURL p {
-  font-size: 1rem;
-  text-wrap: nowrap;
-  margin-right: 10px;
-}
-
-.containerURL div{
-  display: inline-flex;
-  align-items: center;
-  overflow: hidden;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-}
-
-.containerURL h2{
-  word-wrap: break-word; 
-  overflow-wrap: anywhere;
-}
-
-.containerURL h2 img {
-  align-items: center;
-}
-
-ul li span{
-  word-wrap: break-word; 
-  overflow-wrap: anywhere;
-  color: #192746;
-}
-
-.containerURL{
-  margin-bottom: 30px;
-  width: 90%;
-}
-
-.containerURL li{
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
+  color: aliceblue;
+  display: grid;
+  place-items: center;
 }
 
 #box {
@@ -145,12 +36,6 @@ ul li span{
   border: 1px solid rgb(255, 255, 255);
   border-radius: 10px;
   background-color: #254972;
-
-}
-
-#formBox {
-    display: grid;
-    justify-items: center;
 }
 
 h1 {
@@ -160,12 +45,12 @@ h1 {
 }
 
 #title {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 #urlInput {
     height: 52px;
-    width: 500px;
+    width: 100%;
     font-size: 1.05rem;
     border-radius: 10px;
     margin-bottom: 25px;
@@ -176,13 +61,13 @@ p{
 }
 
 #checkbox {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  width: 100%;
 }
 
 #checkbox label{
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
 .spanTime{
@@ -190,7 +75,7 @@ p{
     border: 2px solid rgb(0, 0, 0);
     padding: 15px;
     width: 92px;
-  
+    text-wrap: nowrap;
 }
 
 #timeBox p {
@@ -236,17 +121,22 @@ p{
   display: none;
 }
 
-.button {
-    margin-top: 25px;
-    position: relative;
-    border: none;
-    background: transparent;
-    padding: 0;
-    outline: none;
-    cursor: pointer;
-    font-family: sans-serif;
+#centerBtn{
+  display: grid;
+  place-items: center;
+  width: 100%;
 }
 
+.button {
+  margin-top: 25px;
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  font-family: sans-serif;
+}
 
 .button .shadow {
   position: absolute;
@@ -324,6 +214,113 @@ input, select {
   background-color: #0b407a;
 }
 
+.feedback-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background-color: #192746; 
+  color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; 
+  z-index: 1001;
+  text-align: center;
+}
+
+.feedback-message.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#sidebarURLS{
+  width: 25vw;
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  right: -25vw;
+  overflow: auto;
+  border-radius: 20px 0px 0px 20px;  
+  text-overflow: ellipsis;
+  z-index: 10010;
+  /* animation-duration: 1s;
+  animation-name: showSidebar; */
+
+}
+
+.informationstructure{
+  display: flex;
+}
+
+#arrowHide {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  cursor: pointer;
+  color:  rgb(58, 86, 128);
+  font-size: 2rem;
+}
+
+#titleUrl {
+  color: #254972;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.containerURL a {
+  color: #254972;
+  word-wrap: break-word;
+  width: 90%;
+}
+
+.containerURL p {
+  font-size: 1rem;
+  text-wrap: nowrap;
+  margin-right: 10px;
+}
+
+.containerURL div{
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+}
+
+.containerURL h2{
+  word-wrap: break-word; 
+  overflow-wrap: anywhere;
+}
+
+.containerURL h2 img {
+  align-items: center;
+}
+
+ul li span{
+  word-wrap: break-word; 
+  overflow-wrap: anywhere;
+  color: #192746;
+}
+
+.containerURL{
+  margin-bottom: 30px;
+  width: 90%;
+}
+
+.containerURL li{
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -397,4 +394,54 @@ input, select {
     right: -25vw;
   }
   
+}
+
+@media (max-width: 1024px){
+  .spanTime{
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 15px;
+    width: 15%;
+  }
+
+  #box {
+    padding: 10px;
+    border: none;
+    border-radius: none;
+    background-color: #33333300;
+  }
+
+  #formSection{
+    height: auto;
+    margin-top: 100px;
+    display: block;
+  }
+
+  #sidebarURLS{
+    width: 90vw;
+    height: 100vh;
+    top: 0;
+    right: -90vw;
+    display: none;
+  }
+
+  @keyframes hideSidebarSmall {
+    from {
+      right: 0;
+    }
+  
+    to {
+      right: -90vw;
+    }
+    
+  }
+
+  @keyframes showSidebarSmall {
+    from {
+      right: -90vw;
+    }
+    to {
+      right: 0;
+    }
+  }
 }
